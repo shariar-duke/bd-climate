@@ -1,4 +1,4 @@
-import HeartIcon from "../../assets/heart"
+import HeartIcon from "../../assets/heart.svg"
 
 export default function AddToFavourite() {
   return (

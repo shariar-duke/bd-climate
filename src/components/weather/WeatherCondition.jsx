@@ -1,8 +1,8 @@
-import CloudyIcon from "../../assets/icons/cloud";
-import HumidityIcon from "../../assets/icons/humidity";
-import TempMaxIcon from "../../assets/icons/temp-max";
-import TempMinIcon from "../../assets/icons/temp-min";
-import WindIcon from "../../assets/icons/wind";
+import CloudyIcon from "../../assets/icons/cloud.svg";
+import HumidityIcon from "../../assets/icons/humidity.svg";
+import TempMaxIcon from "../../assets/icons/temp-max.svg";
+import TempMinIcon from "../../assets/icons/temp-min.svg";
+import WindIcon from "../../assets/icons/wind.svg";
 
 export default function WeatherCondition() {
   return (
