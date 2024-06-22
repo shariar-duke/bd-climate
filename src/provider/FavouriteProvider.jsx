@@ -5,24 +5,29 @@ const FavouriteProvider = ({ children }) => {
   const [favourities, setFavourities] = useLocalStorage("favourites", []);
 
   const addToFavourites = (latitude, longitude, location) => {
-    setFavourities(...favourities, {
-      latitude: latitude,
-      longitude: longitude,
-      location: location,
-    });
+    setFavourities([
+      ...favourities,
+      {
+        latitude: latitude,
+        longitude: longitude,
+        location: location,
+      },
+    ]);
   };
 
   const removeFromFavourites = (location) => {
     const restFavourites = favourities.filter(
-        (fav) => fav.location !== location
+      (fav) => fav.location !== location
     );
     setFavourities(restFavourites);
-};
+  };
   return (
-    <FavouriteContext.Provider value={{ favourities , addToFavourites, removeFromFavourites}}>
+    <FavouriteContext.Provider
+      value={{ favourities, addToFavourites, removeFromFavourites }}
+    >
       {children}
     </FavouriteContext.Provider>
   );
 };
 
-export default FavouriteProvider
+export default FavouriteProvider;

@@ -12,7 +12,7 @@ const useWeather = () => {
     cloudPercentage: "",
     wind: "",
     time: "",
-    longitue: "",
+    longitude: "",
     latitude: "",
   });
   // ekta loading state banay nibo initally . jotokhn porjonto api call hgoye resutl na dey totokhn eta rakhbo true api data dilei eta false hoye jabe.
@@ -59,7 +59,7 @@ const useWeather = () => {
         wind: data?.wind?.speed,
         time: data?.dt,
         longitude: longitude,
-        lattitude: lattitude,
+        latitude: lattitude,
       };
 
       // ei updatedWeatherdata dia data ta set kroe dbo
