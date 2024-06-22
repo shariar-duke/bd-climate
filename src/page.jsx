@@ -55,8 +55,8 @@ export default function Page() {
   return (
     <>
       {loading.state ? (
-        <div className="flex h-full justify-center items-center">
-          <p>{loading.message}</p>
+        <div className="flex bg-gray-200 rounded-md w-96 mt-14 mx-auto">
+          <p className="text-center text-3xl text-black">{loading.message}</p>
         </div>
       ) : (
         <div
