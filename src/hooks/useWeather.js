@@ -1,4 +1,4 @@
-import { useState, useEffect , useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { LocationContext } from "../context";
 const useWeather = () => {
   // ei ei data gula amra api theke tulbo
@@ -21,13 +21,11 @@ const useWeather = () => {
     message: "",
   });
 
-
   const [error, setError] = useState(null);
 
-  const {selectedLocation} = useContext(LocationContext)
+  const { selectedLocation } = useContext(LocationContext);
 
-  console.log("Lcoation data in the hook", selectedLocation)
-
+  console.log("Lcoation data in the hook", selectedLocation);
 
   const fetchWeatherData = async (lattitude, longitude) => {
     try {
@@ -47,9 +45,7 @@ const useWeather = () => {
         throw new Error(errorMessage);
       }
 
-
       const data = await response.json();
-
 
       const updateWeatherData = {
         ...weatherData,
@@ -66,7 +62,6 @@ const useWeather = () => {
         latitude: lattitude,
       };
 
-
       setWeatherData(updateWeatherData);
     } catch (err) {
       setError(err);
@@ -79,16 +74,21 @@ const useWeather = () => {
     }
   };
 
-
   useEffect(() => {
     setLoading({
       loading: true,
       message: "Finding location...",
     });
-    navigator.geolocation.getCurrentPosition(function (position) {
-      fetchWeatherData(position.coords.latitude, position.coords.longitude);
-    });
-  }, []);
+    // jode search kora value ta pay tahoele api theke data oita dia tulbo . jode na pai tahole apoi theke data broser er location theke tulbo
+    if (selectedLocation.latitude && selectedLocation.longitude) {
+      fetchWeatherData(selectedLocation.latitude, selectedLocation.longitude);
+    } else {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        fetchWeatherData(position.coords.latitude, position.coords.longitude);
+      });
+    }
+  }, [selectedLocation.latitude , selectedLocation.longitude]);
+  // useEffect a ei dependency ta dia dite hbe 
 
   return {
     weatherData,
