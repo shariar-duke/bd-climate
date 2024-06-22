@@ -12,11 +12,10 @@ export default function Header() {
         <Logo />
         <div className="flex items-center gap-4 relative">
           <Search />
-          <Favourite />
-          <FavouriteListModal />
+          <Favourite onShow ={()=>setShowFavModal(!showFavMoal)} />
+          {showFavMoal && <FavouriteListModal />}
         </div>
       </nav>
-   
     </header>
   );
 }
