@@ -76,7 +76,8 @@ const useWeather = () => {
 
   useEffect(() => {
     setLoading({
-      loading: true,
+      ...loading,
+      state: true,
       message: "Finding location...",
     });
     // jode search kora value ta pay tahoele api theke data oita dia tulbo . jode na pai tahole apoi theke data broser er location theke tulbo
