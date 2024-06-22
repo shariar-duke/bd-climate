@@ -13,3 +13,5 @@ const LocationProvider =({childeren})=>
     </LocationContext.Provider>
   )
 }
+
+export {LocationProvider}
