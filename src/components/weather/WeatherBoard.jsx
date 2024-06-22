@@ -6,7 +6,7 @@ import WeatherCondition from "./WeatherCondition";
 export default function WeatherBoard() {
 
 
-  console.log("The weather data from the conext", weatherData);
+
 
   return (
     <div className="container">
