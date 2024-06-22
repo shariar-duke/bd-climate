@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-
+import { useState, useEffect , useContext } from "react";
+import { LocationContext } from "../context";
 const useWeather = () => {
   // ei ei data gula amra api theke tulbo
   const [weatherData, setWeatherData] = useState({
@@ -21,10 +21,14 @@ const useWeather = () => {
     message: "",
   });
 
-  // r ekta state nibo jate async call howar somoy kno error ba emn type kisu hole setao buja jay
+
   const [error, setError] = useState(null);
 
-  // api call  korar jnno ekta async function lekhbo. ei function ta lattitude and longitude name duta pearmeter nibe karon protibar eta different hbe baki jinis hardcoced
+  const {selectedLocation} = useContext(LocationContext)
+
+  console.log("Lcoation data in the hook", selectedLocation)
+
+
   const fetchWeatherData = async (lattitude, longitude) => {
     try {
       setLoading({
@@ -32,7 +36,7 @@ const useWeather = () => {
         state: true,
         message: "Fetching weather data",
       });
-      // ekhnae api call ta korte hbe
+
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lattitude}&lon=${longitude}&appid=${
           import.meta.env.VITE_WEATHER_API_KEY
@@ -43,9 +47,9 @@ const useWeather = () => {
         throw new Error(errorMessage);
       }
 
-      // jode error na hoy data thik vabe ase
+
       const data = await response.json();
-      // datar modhe onk kisu asbe eto amader dorkar nai so amra bache nibo
+
 
       const updateWeatherData = {
         ...weatherData,
@@ -62,7 +66,6 @@ const useWeather = () => {
         latitude: lattitude,
       };
 
-      // ei updatedWeatherdata dia data ta set kroe dbo
 
       setWeatherData(updateWeatherData);
     } catch (err) {
@@ -76,7 +79,7 @@ const useWeather = () => {
     }
   };
 
-  // Amader ekta k component ta first time load howar sathe sathe call korte hbe
+
   useEffect(() => {
     setLoading({
       loading: true,
